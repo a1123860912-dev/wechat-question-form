@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>来说说吧</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        "Helvetica Neue", Arial, "Noto Sans SC", "PingFang SC",
+        "Microsoft YaHei", sans-serif;
+      -webkit-font-smoothing: antialiased;
+      background: #FAF7F2;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px 16px;
+    }
+    .card {
+      width: 100%;
+      max-width: 480px;
+      background: #FFFFFF;
+      border-radius: 16px;
+      padding: 40px 28px;
+      box-shadow: 0 4px 24px rgba(45, 41, 38, 0.06);
+    }
+    .hero {
+      text-align: center;
+      margin-bottom: 36px;
+      padding-top: 4px;
+    }
+    .lead {
+      font-size: 16px;
+      color: #3D3833;
+      line-height: 1.9;
+      font-weight: 400;
+      margin-bottom: 20px;
+      letter-spacing: 0.01em;
+    }
+    .divider {
+      width: 32px;
+      height: 1px;
+      background: #C17F59;
+      opacity: 0.4;
+      margin: 0 auto 16px;
+    }
+    .subtitle {
+      font-size: 15px;
+      color: #2D2926;
+      line-height: 1.8;
+      text-align: center;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      margin-bottom: 12px;
+    }
+    .promise {
+      font-size: 13px;
+      color: #9C9088;
+      line-height: 1.7;
+      text-align: center;
+      font-weight: 400;
+      letter-spacing: 0.01em;
+    }
+    .field {
+      margin-bottom: 24px;
+    }
+    label {
+      display: block;
+      font-size: 14px;
+      color: #2D2926;
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+    .required {
+      color: #C17F59;
+      margin-left: 4px;
+    }
+    .optional {
+      color: #B5ADA4;
+      font-weight: 400;
+      margin-left: 4px;
+    }
+    input,
+    textarea {
+      width: 100%;
+      padding: 13px 16px;
+      border: 1px solid #E8E0D8;
+      border-radius: 10px;
+      font-size: 15px;
+      color: #2D2926;
+      background: #FDFCFB;
+      transition: all 0.2s;
+      font-family: inherit;
+      line-height: 1.6;
+    }
+    input::placeholder,
+    textarea::placeholder {
+      color: #C4BDB4;
+    }
+    input:focus,
+    textarea:focus {
+      outline: none;
+      border-color: #C17F59;
+      background: #FFFFFF;
+      box-shadow: 0 0 0 3px rgba(193, 127, 89, 0.08);
+    }
+    textarea {
+      resize: vertical;
+      line-height: 1.8;
+    }
+    .error {
+      color: #A94B4B;
+      font-size: 14px;
+      margin-bottom: 16px;
+      padding: 10px 14px;
+      background: #FDF2F2;
+      border-radius: 8px;
+      border: 1px solid #F5D5D5;
+      display: none;
+    }
+    .error.show {
+      display: block;
+    }
+    .btn {
+      width: 100%;
+      padding: 15px;
+      background: #C17F59;
+      color: #FFFFFF;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+      letter-spacing: 0.02em;
+    }
+    .btn:hover:not(:disabled) {
+      background: #A86B48;
+    }
+    .btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+    .privacy {
+      font-size: 12px;
+      color: #B5ADA4;
+      text-align: center;
+      margin-top: 20px;
+      line-height: 1.5;
+    }
+
+    /* Success state */
+    .success-card {
+      text-align: center;
+      padding: 60px 28px;
+    }
+    .success-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: #C17F59;
+      color: #fff;
+      font-size: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+    }
+    .success-card h1 {
+      font-size: 22px;
+      font-weight: 500;
+      color: #2D2926;
+      margin-bottom: 12px;
+      letter-spacing: 0.04em;
+    }
+    .success-card p {
+      font-size: 15px;
+      color: #8C8279;
+      line-height: 1.8;
+    }
+    .btn-secondary {
+      width: 100%;
+      padding: 14px;
+      background: transparent;
+      color: #C17F59;
+      border: 1px solid #C17F59;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: 500;
+      cursor: pointer;
+      margin-top: 28px;
+      transition: all 0.2s;
+    }
+    .btn-secondary:hover {
+      background: rgba(193, 127, 89, 0.04);
+    }
+
+    @media (max-width: 480px) {
+      .card {
+        padding: 36px 22px;
+        border-radius: 12px;
+      }
+      .lead {
+        font-size: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="app"></div>
+
+  <script>
+    const FEISHU_WEBHOOK = 'https://open.feishu.cn/open-apis/bot/v2/hook/e4f71fb5-9d69-444b-9773-4b4769d4fae4';
+
+    const state = {
+      view: 'form', // 'form' | 'success'
+      name: '',
+      contact: '',
+      description: '',
+      loading: false,
+      error: ''
+    };
+
+    function render() {
+      const app = document.getElementById('app');
+      if (state.view === 'success') {
+        app.innerHTML = `
+          <div class="card success-card">
+            <div class="success-icon">&#10003;</div>
+            <h1>已收到</h1>
+            <p>谢谢你愿意分享。<br />我会认真阅读的。</p>
+            <button class="btn-secondary" onclick="resetForm()">再写一条</button>
+          </div>
+        `;
+      } else {
+        app.innerHTML = `
+          <div class="card">
+            <div class="hero">
+              <p class="lead">
+                很多时候，问题不在于没有答案。<br />
+                而在于我们还没有看清自己所处的环境。
+              </p>
+              <div class="divider"></div>
+              <p class="subtitle">如果你愿意，告诉我你的困境。</p>
+              <p class="promise">
+                我会认真阅读每一份留言，<br />
+                并尽可能通过文章或私信的方式回应大家关心的问题。
+              </p>
+            </div>
+
+            <form id="form" onsubmit="handleSubmit(event)">
+              <div class="field">
+                <label>怎么称呼你<span class="optional">（选填）</span></label>
+                <input
+                  type="text"
+                  id="name"
+                  value="${escapeHtml(state.name)}"
+                  oninput="state.name = this.value"
+                  placeholder="昵称或名字"
+                />
+              </div>
+
+              <div class="field">
+                <label>联系方式<span class="required">*</span></label>
+                <input
+                  type="text"
+                  id="contact"
+                  value="${escapeHtml(state.contact)}"
+                  oninput="state.contact = this.value"
+                  placeholder="微信 / 手机号"
+                  required
+                />
+              </div>
+
+              <div class="field">
+                <label>你的困境描述<span class="required">*</span></label>
+                <textarea
+                  id="description"
+                  oninput="state.description = this.value"
+                  placeholder="发生了什么？你现在的感受是什么？"
+                  rows="6"
+                  required
+                >${escapeHtml(state.description)}</textarea>
+              </div>
+
+              <div id="error" class="error ${state.error ? 'show' : ''}">${state.error || ''}</div>
+
+              <button type="submit" class="btn" ${state.loading ? 'disabled' : ''}>
+                ${state.loading ? '发送中...' : '发送'}
+              </button>
+            </form>
+
+            <p class="privacy">你的故事不会被公开分享，仅用于回复。</p>
+          </div>
+        `;
+      }
+    }
+
+    function escapeHtml(str) {
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+
+    function resetForm() {
+      state.view = 'form';
+      state.name = '';
+      state.contact = '';
+      state.description = '';
+      state.error = '';
+      state.loading = false;
+      render();
+    }
+
+    async function handleSubmit(e) {
+      e.preventDefault();
+      state.error = '';
+
+      if (!state.contact.trim() || !state.description.trim()) {
+        state.error = '请填写联系方式和困境描述';
+        render();
+        return;
+      }
+
+      state.loading = true;
+      render();
+
+      const nameDisplay = state.name.trim() || '匿名';
+      const message = `📩 新的读者困境
+
+👤 ${nameDisplay}
+📱 ${state.contact.trim()}
+📝 困境描述：
+${state.description.trim()}`;
+
+      try {
+        const res = await fetch(FEISHU_WEBHOOK, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            msg_type: 'text',
+            content: { text: message }
+          })
+        });
+
+        if (res.ok || res.status === 200) {
+          state.view = 'success';
+        } else {
+          state.error = '提交失败，请稍后重试';
+          state.loading = false;
+        }
+      } catch (err) {
+        state.error = '网络错误，请检查网络后重试';
+        state.loading = false;
+      }
+
+      render();
+    }
+
+    render();
+  </script>
+</body>
+</html>
