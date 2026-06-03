@@ -341,13 +341,14 @@
 ${state.description.trim()}`;
 
       try {
-        const res = await fetch('/api/submit', {
+        const FEISHU_WEBHOOK = 'https://open.feishu.cn/open-apis/bot/v2/hook/e4f71fb5-9d69-444b-9773-4b4769d4fae4';
+
+        const res = await fetch(FEISHU_WEBHOOK, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            name: nameDisplay,
-            contact: state.contact.trim(),
-            description: state.description.trim()
+            msg_type: 'text',
+            content: { text: message }
           })
         });
 
