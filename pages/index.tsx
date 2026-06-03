@@ -47,7 +47,7 @@ export default function Home() {
         <div className="card">
           <div className="success-icon">&#10003;</div>
           <h1>已收到</h1>
-          <p className="subtitle">谢谢你愿意分享。<br />我会认真读的。</p>
+          <p className="subtitle">谢谢你愿意分享。<br />我会认真阅读的。</p>
           <button onClick={() => setStatus('idle')} className="btn-secondary">
             再写一条
           </button>
@@ -75,12 +75,16 @@ export default function Home() {
     <div className="container">
       <div className="card">
         <div className="hero">
-          <div className="quote-mark">"</div>
-          <h1>告诉我你的困境</h1>
+          <p className="lead">
+            很多时候，问题不在于没有答案。<br />
+            而在于我们还没有看清自己所处的环境。
+          </p>
           <div className="divider" />
           <p className="subtitle">
-            不是每个问题都有答案，<br />
-            但说出来本身就有意义。
+            如果你愿意，告诉我你的困境。
+          </p>
+          <p className="promise">
+            我会认真阅读每一份留言，并尽可能通过文章或私信的方式回应大家关心的问题。
           </p>
         </div>
 
@@ -123,7 +127,7 @@ export default function Home() {
         </form>
 
         <p className="privacy">
-          你的信息仅用于回复，不会公开或用于其他目的。
+          你的故事不会被公开分享，仅用于回复。
         </p>
       </div>
       <CommonStyles />
@@ -163,40 +167,40 @@ function CommonStyles() {
       }
       .hero {
         text-align: center;
-        margin-bottom: 40px;
-        padding-top: 8px;
+        margin-bottom: 36px;
+        padding-top: 4px;
       }
-      .quote-mark {
-        font-family: Georgia, "Times New Roman", serif;
-        font-size: 48px;
-        line-height: 1;
-        color: #C17F59;
-        opacity: 0.35;
-        margin-bottom: 12px;
-        user-select: none;
-      }
-      h1 {
-        font-size: 26px;
-        font-weight: 500;
-        color: #2D2926;
-        margin-bottom: 16px;
-        letter-spacing: 0.06em;
-        text-align: center;
+      .lead {
+        font-size: 16px;
+        color: #3D3833;
+        line-height: 1.9;
+        font-weight: 400;
+        margin-bottom: 20px;
+        letter-spacing: 0.01em;
       }
       .divider {
         width: 32px;
         height: 1px;
         background: #C17F59;
-        opacity: 0.45;
+        opacity: 0.4;
         margin: 0 auto 16px;
       }
       .subtitle {
         font-size: 15px;
-        color: #8C8279;
+        color: #2D2926;
         line-height: 1.8;
         text-align: center;
+        font-weight: 500;
+        letter-spacing: 0.04em;
+        margin-bottom: 12px;
+      }
+      .promise {
+        font-size: 13px;
+        color: #9C9088;
+        line-height: 1.7;
+        text-align: center;
         font-weight: 400;
-        letter-spacing: 0.02em;
+        letter-spacing: 0.01em;
       }
       .field {
         margin-bottom: 24px;
@@ -304,19 +308,9 @@ function CommonStyles() {
         }
         .hero {
           margin-bottom: 32px;
-          padding-top: 4px;
         }
-        .quote-mark {
-          font-size: 40px;
-          margin-bottom: 8px;
-        }
-        h1 {
-          font-size: 22px;
-          letter-spacing: 0.04em;
-          margin-bottom: 14px;
-        }
-        .divider {
-          margin-bottom: 14px;
+        .lead {
+          font-size: 15px;
         }
       }
     `}</style>
