@@ -74,10 +74,15 @@ export default function Home() {
   return (
     <div className="container">
       <div className="card">
-        <h1>告诉我你的困境</h1>
-        <p className="subtitle">
-          不是每个问题都有答案，<br />但说出来本身就有意义。
-        </p>
+        <div className="hero">
+          <div className="quote-mark">"</div>
+          <h1>告诉我你的困境</h1>
+          <div className="divider" />
+          <p className="subtitle">
+            不是每个问题都有答案，<br />
+            但说出来本身就有意义。
+          </p>
+        </div>
 
         <form onSubmit={handleSubmit}>
           <div className="field">
@@ -156,20 +161,42 @@ function CommonStyles() {
         padding: 40px 28px;
         box-shadow: 0 4px 24px rgba(45, 41, 38, 0.06);
       }
+      .hero {
+        text-align: center;
+        margin-bottom: 40px;
+        padding-top: 8px;
+      }
+      .quote-mark {
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 48px;
+        line-height: 1;
+        color: #C17F59;
+        opacity: 0.35;
+        margin-bottom: 12px;
+        user-select: none;
+      }
       h1 {
         font-size: 26px;
-        font-weight: 600;
+        font-weight: 500;
         color: #2D2926;
-        margin-bottom: 10px;
-        letter-spacing: 0.02em;
+        margin-bottom: 16px;
+        letter-spacing: 0.06em;
         text-align: center;
+      }
+      .divider {
+        width: 32px;
+        height: 1px;
+        background: #C17F59;
+        opacity: 0.45;
+        margin: 0 auto 16px;
       }
       .subtitle {
         font-size: 15px;
         color: #8C8279;
-        margin-bottom: 36px;
-        line-height: 1.7;
+        line-height: 1.8;
         text-align: center;
+        font-weight: 400;
+        letter-spacing: 0.02em;
       }
       .field {
         margin-bottom: 24px;
@@ -272,11 +299,24 @@ function CommonStyles() {
       }
       @media (max-width: 480px) {
         .card {
-          padding: 32px 20px;
+          padding: 36px 22px;
           border-radius: 12px;
+        }
+        .hero {
+          margin-bottom: 32px;
+          padding-top: 4px;
+        }
+        .quote-mark {
+          font-size: 40px;
+          margin-bottom: 8px;
         }
         h1 {
           font-size: 22px;
+          letter-spacing: 0.04em;
+          margin-bottom: 14px;
+        }
+        .divider {
+          margin-bottom: 14px;
         }
       }
     `}</style>
