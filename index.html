@@ -2,7 +2,8 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <title>来说说吧</title>
   <style>
     * {
@@ -204,13 +205,17 @@
       @media (max-width: 480px) {
         body {
           padding: 0;
+          background: #FFFFFF;
         }
         .card {
-          padding: 36px 20px;
+          padding: 36px 16px;
           border-radius: 0;
+          box-shadow: none;
+          width: 100%;
+          max-width: 100%;
         }
         .success-card {
-          padding: 60px 20px;
+          padding: 60px 16px;
         }
         .lead {
           font-size: 15px;
