@@ -216,7 +216,6 @@
   <div id="app"></div>
 
   <script>
-    const FEISHU_WEBHOOK = 'https://open.feishu.cn/open-apis/bot/v2/hook/e4f71fb5-9d69-444b-9773-4b4769d4fae4';
 
     const state = {
       view: 'form', // 'form' | 'success'
@@ -342,12 +341,13 @@
 ${state.description.trim()}`;
 
       try {
-        const res = await fetch(FEISHU_WEBHOOK, {
+        const res = await fetch('/api/submit', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            msg_type: 'text',
-            content: { text: message }
+            name: nameDisplay,
+            contact: state.contact.trim(),
+            description: state.description.trim()
           })
         });
 
